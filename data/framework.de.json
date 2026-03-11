@@ -1,0 +1,127 @@
+{
+  "app": {
+    "title": "EU AI Act Navigator (Prototyp)",
+    "subtitle": "Fragebasierter Schnellcheck mit Systemklasse, Pflichten und Artikel-4-Hilfestellungen.",
+    "disclaimer": "Hinweis: Dies ist ein orientierender Prototyp und keine Rechtsberatung. Fuer verbindliche Einstufungen bitte juristisch pruefen.",
+    "copyright": "Copyright by Dr. DirKInstitue"
+  },
+  "roles": [
+    { "value": "management", "label": "Geschaeftsfuehrung / Management" },
+    { "value": "provider", "label": "Anbieter / Hersteller" },
+    { "value": "deployer", "label": "Betreiber / Anwenderorganisation" },
+    { "value": "compliance", "label": "Compliance / Datenschutz / Recht" },
+    { "value": "it", "label": "IT / Security / Architektur" }
+  ],
+  "systemTypes": [
+    { "value": "chatbot", "label": "Chatbot / Assistent" },
+    { "value": "scoring", "label": "Scoring / Klassifikation von Personen" },
+    { "value": "decision_support", "label": "Entscheidungsunterstuetzung" },
+    { "value": "biometric", "label": "Biometrisches System" },
+    { "value": "content_gen", "label": "Generative KI / Content-Erzeugung" },
+    { "value": "other", "label": "Sonstiges" }
+  ],
+  "kritisSectors": [
+    "Ernaehrung",
+    "Finanz- und Versicherungswesen",
+    "Gesundheit",
+    "Informationstechnik und Telekommunikation",
+    "Medien und Kultur",
+    "Siedlungsabfallentsorgung",
+    "Staat und Verwaltung",
+    "Transport und Verkehr",
+    "Wasser"
+  ],
+  "systemSections": [
+    {
+      "key": "unacceptable",
+      "label": "Potenziell Verboten",
+      "color": "danger",
+      "description": "Hinweise auf Praktiken, die nach EU AI Act untersagt sein koennen.",
+      "typicalTriggers": [
+        "Social Scoring",
+        "Manipulative oder ausnutzende Systeme",
+        "Biometrische Kategorisierung in sensitiven Kontexten"
+      ],
+      "actions": [
+        "Use Case sofort stoppen und juristisch bewerten",
+        "Management-Entscheidung dokumentieren",
+        "Alternativen ohne verbotene Funktion pruefen"
+      ]
+    },
+    {
+      "key": "high",
+      "label": "Potenziell Hochrisiko",
+      "color": "warning",
+      "description": "Hinweise auf Annex-III-nahe Einsaetze (z. B. Bildung, Arbeit, kritische Dienste).",
+      "typicalTriggers": [
+        "Entscheidungen ueber Zugang zu Bildung oder Arbeit",
+        "Bewertung von Personen mit Grundrechtsbezug",
+        "Einsatz in KRITIS oder kritischer Infrastruktur"
+      ],
+      "actions": [
+        "Risikomanagement und Daten-Governance planen",
+        "Technische Dokumentation aufbauen",
+        "Menschliche Aufsicht und Logging definieren"
+      ]
+    },
+    {
+      "key": "limited",
+      "label": "Begrenztes Risiko",
+      "color": "info",
+      "description": "Typisch fuer Systeme mit Transparenzpflichten (z. B. Nutzerhinweise).",
+      "typicalTriggers": [
+        "Chatbot/Interaktionssystem",
+        "KI-generierte Inhalte fuer Endnutzer",
+        "Automatisierte Kommunikation"
+      ],
+      "actions": [
+        "Transparenzhinweise sichtbar machen",
+        "Nutzer ueber KI-Einsatz informieren",
+        "Eskalation an Mensch bei Unsicherheit anbieten"
+      ]
+    },
+    {
+      "key": "minimal",
+      "label": "Minimales Risiko",
+      "color": "success",
+      "description": "Niedrige Auswirkungen ohne klare Hochrisiko-Indikatoren.",
+      "typicalTriggers": [
+        "Interne Produktivitaet ohne Personenbewertung",
+        "Nicht-kritische Assistenzfunktionen",
+        "Kein Grundrechtsbezug"
+      ],
+      "actions": [
+        "Basis-Governance trotzdem dokumentieren",
+        "Freiwillige Kontrollen etablieren",
+        "Artikel-4-Kompetenzmassnahmen beibehalten"
+      ]
+    }
+  ],
+  "article4": {
+    "title": "Artikel 4 - AI Literacy (Kompetenzpflicht)",
+    "summary": "Anbieter und Betreiber sollen angemessene Massnahmen treffen, damit beteiligte Personen ausreichende KI-Kompetenz besitzen.",
+    "checklist": [
+      "Rollen mit KI-Verantwortung sind benannt",
+      "Einstiegsschulung fuer alle relevanten Teams vorhanden",
+      "Vertiefung fuer Hochrisiko-nahe Rollen definiert",
+      "Dokumentierte Leitlinien zur sicheren Nutzung verfuegbar",
+      "Regelmaessige Auffrischung und Wirksamkeitskontrolle eingeplant"
+    ],
+    "evidenceExamples": [
+      "Schulungskalender und Teilnahmeprotokolle",
+      "Rollenmatrix (Owner, Reviewer, Freigabe)",
+      "Nutzungsrichtlinie inkl. Do/Don't-Liste",
+      "Audit-Notizen und Lessons Learned"
+    ]
+  },
+  "references": [
+    {
+      "label": "AI Act Uebersicht (DE)",
+      "url": "https://artificialintelligenceact.eu/de/"
+    },
+    {
+      "label": "Lokale Quelle: KI_Basis _EUAIACT.pdf",
+      "url": "file:///D:/Dr.DirKI_/EU%20Data%20ACT/KI_Basis%20_EUAIACT.pdf"
+    }
+  ]
+}

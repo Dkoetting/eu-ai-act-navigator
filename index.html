@@ -1,0 +1,171 @@
+﻿<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EU AI Act Navigator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero card">
+      <div class="hero-top">
+        <img src="./logo.jpg" alt="Dr. DirKInstitue Logo" class="logo" />
+        <div>
+          <p class="eyebrow">Prototyp</p>
+          <h1 id="appTitle">EU AI Act Navigator</h1>
+          <p id="appSubtitle"></p>
+        </div>
+      </div>
+      <p id="appDisclaimer" class="disclaimer"></p>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Gefuehrter Schnellcheck</h2>
+        <p class="help">Bitte beantworten Sie die Fragen in drei Schritten: Rolle, Systemtyp und Einsatzkontext (inkl. KRITIS).</p>
+
+        <div class="field">
+          <label for="role">Funktion / Verantwortungsrolle *</label>
+          <select id="role"></select>
+        </div>
+
+        <div class="field">
+          <label for="roleFree">Funktion / Verantwortungsrolle (Freitext, optional)</label>
+          <input id="roleFree" type="text" placeholder="z.B. Projektleitung KI, Fachbereichsleitung, externe Beratung" />
+        </div>
+
+        <div class="field">
+          <label for="systemType">Identifizierter Systemtyp *</label>
+          <select id="systemType"></select>
+        </div>
+
+        <div class="field">
+          <label for="systemName">Systembezeichnung (optional)</label>
+          <input id="systemName" type="text" placeholder="z.B. Bewerber-Assistent V2" />
+        </div>
+
+        <div class="field">
+          <label for="sector">Einsatzkontext / Sektor *</label>
+          <select id="sector">
+            <option value="">Bitte waehlen</option>            <option value="general">Allgemein</option>
+            <option value="education">Bildung</option>
+            <option value="employment">Arbeit / HR</option>
+            <option value="health">Gesundheit</option>
+            <option value="public">Oeffentliche Verwaltung</option>
+            <option value="critical">Kritische Infrastruktur</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sectorFree">Sektor zusaetzlich beschreiben (optional)</label>
+          <input id="sectorFree" type="text" placeholder="z.B. Forschung, Pharma-Labor, Kommune" />
+        </div>
+
+        <div class="field">
+          <label>KRITIS-Sektoren (Mehrfachauswahl)</label>
+          <div id="kritisList" class="checks compact"></div>
+        </div>
+
+        <div class="field">
+          <label for="purpose">Kurzbeschreibung des Anwendungsfalls *</label>
+          <textarea id="purpose" rows="4" placeholder="z.B. KI zur Bewerbervorauswahl und Ranking-Unterstuetzung"></textarea>
+        </div>
+
+        <div class="checks">
+          <label><input type="checkbox" id="cPeople" /> Interagiert direkt mit Menschen (Chatbot/Assistenz)?</label>
+          <label><input type="checkbox" id="cRights" /> Beeinflusst Entscheidungen mit Grundrechtsbezug?</label>
+          <label><input type="checkbox" id="cBiometric" /> Nutzt biometrische Daten/Funktionen?</label>
+          <label><input type="checkbox" id="cVulnerable" /> Zielgruppe beinhaltet vulnerable Personen?</label>
+          <label><input type="checkbox" id="cScoring" /> Bewertet/ordnet Personen (Scoring/Klassifikation)?</label>
+        </div>
+
+        <div class="consent-box" id="consentBox">
+          <label><input type="checkbox" id="legalAck" /> Ich bestaetige, dass die Einstufung eine unverbindliche Orientierung ist und keine Rechtsberatung ersetzt. *</label>
+        </div>
+
+        <p id="validationMessage" class="validation-message hidden"></p>
+
+        <button id="runCheck" class="btn">Einstufung berechnen</button>
+      </article>
+
+      <article class="card" id="resultCard">
+        <h2>Ergebnis</h2>
+        <p class="help">Vorlaeufige Einstufung mit Kontextbezug und priorisierten Handlungsschritten. Es werden keine Eingabedaten gespeichert.</p>
+        <div id="resultBadge" class="badge neutral">Noch nicht berechnet</div>
+        <p id="resultReason" class="result-reason">Bitte den Schnellcheck starten, um eine Einstufung zu erhalten.</p>
+        <p id="resultMeta" class="meta"></p>
+
+        <div>
+          <h3>Priorisierte naechste Schritte</h3>
+          <ul id="resultActions"></ul>
+        </div>
+
+        <div class="insight-block">
+          <h3>Reifegrad-Spinnendiagramm</h3>
+          <p class="help">0 = kritisch, 5 = gut etabliert.</p>
+          <canvas id="radarChart" width="560" height="360"></canvas>
+        </div>
+
+        <div>
+          <h3>Automatische Empfehlungen</h3>
+          <ul id="autoRecommendations"></ul>
+        </div>
+
+        <div class="result-actions-bar">
+          <button id="printResult" class="btn btn-secondary" type="button">Ergebnis als PDF drucken</button>
+          <button id="emailResult" class="btn btn-secondary" type="button">Ergebnis per E-Mail vorbereiten</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2>Differenzierte System-Sektionen</h2>
+        <button class="link-btn" id="toggleSystemHelp">Hilfe anzeigen</button>
+      </div>
+      <p id="systemHelp" class="help hidden">Jede Sektion zeigt typische Trigger und konkrete Massnahmen. Nutze sie als Governance-Baustein pro Use Case.</p>
+      <div id="systemSections" class="cards-4"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2 id="a4Title">Artikel 4</h2>
+        <button class="link-btn" id="toggleA4Help">Erklaerung anzeigen</button>
+      </div>
+      <p id="a4Summary" class="help"></p>
+      <p id="a4Explain" class="help hidden">Praxisziel: Kompetenzen systematisch aufbauen, rollenbasiert zuweisen und nachweisbar dokumentieren.</p>
+
+      <div class="grid-2">
+        <div>
+          <h3>Checkliste AI Literacy</h3>
+          <div id="a4Checklist" class="checks"></div>
+          <p id="a4Score" class="score">Reifegrad: 0/0</p>
+        </div>
+        <div>
+          <h3>Moegliche Nachweise</h3>
+          <ul id="a4Evidence"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Referenzen</h2>
+      <ul id="references"></ul>
+    </section>
+
+    <footer class="footer">
+      <span id="copyrightText">Copyright by Dr. DirKInstitue</span>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
