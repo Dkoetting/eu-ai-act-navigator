@@ -1,8 +1,8 @@
 ﻿const LOCAL_FALLBACK = {
   app: {
-    title: 'EU AI Act Navigator (Prototyp)',
+    title: 'EU AI Act Navigator',
     subtitle: 'Fragebasierter Schnellcheck mit Systemklasse, Pflichten und Artikel-4-Hilfestellungen.',
-    disclaimer: 'Hinweis: Dies ist ein orientierender Prototyp und keine Rechtsberatung. Fuer verbindliche Einstufungen bitte juristisch pruefen.',
+    disclaimer: 'Hinweis: Dies ist eine orientierende Ersteinschaetzung und keine Rechtsberatung. Fuer verbindliche Einstufungen bitte juristisch pruefen.',
     copyright: 'Copyright by Dr. DirKInstitue',
   },
   roles: [
@@ -749,6 +749,8 @@ boot().catch((err) => {
   }
   setText('resultReason', 'Bitte Seite neu laden oder ueber einen lokalen Server starten (z. B. Live Server).');
 });
+
+
 
 
 
